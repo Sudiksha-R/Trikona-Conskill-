@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #000000;
+  --accent-green: #00FF88;
+  --accent-blue: #007BFF;
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fira Code', monospace;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #000000;
+    border-left: 1px solid rgba(0, 255, 136, 0.1);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #1a1a1a;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00FF88;
+  }
+}
+
+@layer utilities {
+  .glass-nav {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 255, 136, 0.15);
+  }
+  
+  .terminal-card {
+    background: #000000;
+    border: 1px solid rgba(0, 255, 136, 0.15);
+  }
+  
+  .text-gradient-green {
+    color: #00FF88;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+  }
+  
+  .scanline {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 255, 136, 0),
+      rgba(0, 255, 136, 0) 50%,
+      rgba(0, 255, 136, 0.05) 50%,
+      rgba(0, 255, 136, 0.05)
+    );
+    background-size: 100% 4px;
+  }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(0, 123, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 123, 255, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+  width: max-content;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
